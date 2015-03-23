@@ -17,6 +17,7 @@
 	overflow:hidden;
 	margin:30px;
 	background-color: #EEE;
+	z-index:10;
 }
 
 .scroll
@@ -33,6 +34,21 @@
 	height:80px;
 	width:80px;
 	margin:10px;
-	text-align:center;
-	line-height:80px;
+}
+
+canvas
+{
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:5;
+}
+
+.circle
+{
+	position:absolute;
+	background:#000;
+	border-radius:50%;
+	width:10px;
+	height:10px;
 }
