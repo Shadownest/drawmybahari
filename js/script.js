@@ -50,7 +50,7 @@ var ctx2 = c2.getContext("2d");
 var dom = $("#mon_canvas");
 var isDrawing = false;
 var delay = 600;
-var socket = io('localhost:5555');
+var socket = io('10.32.195.210:5555');
 
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
