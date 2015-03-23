@@ -13,6 +13,19 @@
 // ctx.strokeStyle = "black";
 // ctx.stroke();
 
+
+// function draw(options)
+// {
+//   ctx.strokeStyle = 'rgba('+options['rgba']+')';
+//   ctx.fillStyle = 'rgba('+options['rgba']+')';
+//   ctx.lineWidth = options['size'];
+//   ctx.beginPath();
+//   ctx.moveTo(options['x1'], options['y1']);
+//   ctx.lineTo(options['x2'], options['y2']);
+//   ctx.stroke();
+//   ctx.closePath();
+// }
+
 // ctx.beginPath();      // Début du chemin
 // ctx.moveTo(400,200);    // Le tracé part du point 400,200
 // ctx.lineTo(600,400);  // Un segment est ajouté vers 600,400

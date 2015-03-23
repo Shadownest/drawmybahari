@@ -16,17 +16,6 @@ function changeColor(source)
 	$('.circle').css('background-color', 'rgba('+rgba+')');
 	$('canvas').trigger('color', rgba);
 }
-function draw(options)
-{
-	ctx.strokeStyle = 'rgba('+options['rgba']+')';
-	ctx.fillStyle = 'rgba('+options['rgba']+')';
-	ctx.lineWidth = options['size'];
-	ctx.beginPath();
-	ctx.moveTo(options['x1'], options['y1']);
-	ctx.lineTo(options['x2'], options['y2']);
-	ctx.stroke();
-	ctx.closePath();
-}
 $('document').ready(function()
 {
 	$("#color").spectrum({
