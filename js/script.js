@@ -45,11 +45,12 @@ la fonction qui recupere la position de la souris
 
 var c = document.getElementById("mon_canvas");
 var ctx = c.getContext("2d");
+var c2 = document.getElementById("foreign");
+var ctx2 = c2.getContext("2d");
 var dom = $("#mon_canvas");
-var drawingtamp = [];
 var isDrawing = false;
 var delay = 600;
-var socket = io('10.32.195.156:5555');
+var socket = io('localhost:5555');
 
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
@@ -70,34 +71,30 @@ $('canvas').on('size', function(e, newsize)
     size = newsize;
 });
 
-function sendData(x1, y1, color, size)
+function sendData(x1, x2, y1, y2, color, size)
 {
-/**
-     * save data to server
-     */
-    drawingtamp.push({
-      x: x1,
-      y: y1
-    });
+    socket.emit('draw', x1, x2, y1, y2, color, size);
 }
+
+socket.on('draw', function(x1, x2, y1, y2, color, size)
+{
+  ctx2.strokeStyle = 'rgba('+color+')';
+  ctx2.fillStyle = 'rgba('+color+')';
+  ctx2.lineWidth = size;
+  ctx2.beginPath();
+  ctx2.moveTo(x1, y1);
+  ctx2.lineTo(x2, y2);
+  ctx2.stroke();
+  ctx2.closePath();
+});
 
 dom.mousedown(function(event) {
     isDrawing = true;
-  	ctx.beginPath();
   	ctx.moveTo(event.pageX, event.pageY);
+    ctx.beginPath();
     x1 = event.pageX;
     y1 = event.pageY;  
 });
-
-setInterval(function(){
-  /**
-   * Send json to socket
-   */
-  socket.emit('draw', drawingtamp, function() {
-    var drawingtamp = [];
-  });
-
-}, delay);
 
 dom.mousemove(function(event)
 {
@@ -108,6 +105,8 @@ dom.mousemove(function(event)
     y2 = event.pageY;
     ctx.stroke();
     sendData(x1, x2, y1, y2, color, size);
+    x1 = x2;
+    y1 = y2;
   }
 });
 

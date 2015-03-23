@@ -44,6 +44,11 @@ canvas
 	z-index:5;
 }
 
+#foreign
+{
+	z-index:2!important;
+}
+
 .circle
 {
 	position:absolute;

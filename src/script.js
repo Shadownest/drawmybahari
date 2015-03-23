@@ -24,8 +24,8 @@ $('document').ready(function()
 		change: changeColor
 	}).css('background-color', '#000');
 	var height = $('.wrapper').height();
-	$('#mon_canvas').attr('height', height);
-	$('#mon_canvas').attr('width', $('.wrapper').width());
+	$('canvas').attr('height', height);
+	$('canvas').attr('width', $('.wrapper').width());
 	$('.menu').css('height', height - 60);
 	$('#size').on('click', function(){changeSize(parseInt(prompt("Size ? (between 1 and 80)")));});
 	changeSize(10);
