@@ -32,19 +32,35 @@ la fonction qui recupere la position de la souris
 
 var c = document.getElementById("mon_canvas");
 var ctx = c.getContext("2d");
+var dom = $("#mon_canvas");
+var isDrawing = false;
 
-$("#mon_canvas").mousedown(function(event) {
+function debug(type, message)
+{
+  $("pre#debug").append("[" + type.toUpperCase()  + "] " + message+ "\n");
+  $('pre#debug').animate( { scrollTop: $("pre#debug").offset().top }, 750 )
+}
+
+dom.mousedown(function(event) {
+    debug("info", "begin drawing");
+    isDrawing = true;
   	ctx.beginPath();
-  	ctx.moveTo(event.pageX, event.pageY);
-  	$(this).on("mousemove", function(event)
-  		{
-  			ctx.lineTo(event.pageX, event.pageY);
-        ctx.strokeStyle = "black";
-        ctx.stroke();
-  		});
+  	ctx.moveTo(event.pageX, event.pageY);  
 });
 
-$("#mon_canvas").mouseup(function(event)
-  {   
-      ctx.closePath();
-  });
+dom.mousemove(function(event)
+{
+  if(isDrawing)
+  {
+    ctx.lineTo(event.pageX, event.pageY);
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+  }
+});
+
+dom.mouseup(function(event)
+{
+  isDrawing = false; 
+  debug("info","relache souris");
+  ctx.closePath();
+});
