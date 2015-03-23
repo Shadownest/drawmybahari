@@ -14,7 +14,10 @@ function changeColor(source)
 	$('#color').css('background-color', 'rgba('+rgba+')');
 	$('.circle').css('background-color', 'rgba('+rgba+')');
 }
-
+function draw(x1, x2, y1, y2, size, color)
+{
+	
+}
 $('document').ready(function()
 {
 	$("#color").spectrum({
