@@ -36,6 +36,7 @@ var dom = $("#mon_canvas");
 var isDrawing = false;
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
+ctx.lineWidth = 10;
 
 $('canvas').on('color', function(e, rgba)
 {
