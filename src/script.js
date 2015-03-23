@@ -16,14 +16,14 @@ function changeColor(source)
 	$('.circle').css('background-color', 'rgba('+rgba+')');
 	$('canvas').trigger('color', rgba);
 }
-function draw(x1, x2, y1, y2, size, rgba)
+function draw(options)
 {
-	ctx.strokeStyle = 'rgba('+rgba+')';
-	ctx.fillStyle = 'rgba('+rgba+')';
-	ctx.lineWidth = size;
+	ctx.strokeStyle = 'rgba('+options['rgba']+')';
+	ctx.fillStyle = 'rgba('+options['rgba']+')';
+	ctx.lineWidth = options['size'];
 	ctx.beginPath();
-	ctx.moveTo(x1, y1);
-	ctx.lineTo(x2, y2);
+	ctx.moveTo(options['x1'], options['y1']);
+	ctx.lineTo(options['x2'], options['y2']);
 	ctx.stroke();
 	ctx.closePath();
 }
@@ -40,9 +40,4 @@ $('document').ready(function()
 	$('.menu').css('height', height - 60);
 	$('#size').on('click', function(){changeSize(parseInt(prompt("Size ? (between 1 and 80)")));});
 	changeSize(10);
-	$('canvas').on('draw', function(options)
-	{
-		var rgba = options['r']+','+options['g']+','+options['b']+','+options['a'];
-		draw(options['x1'], options['x2'], options['y1'], options['y2'], options['size'], rgba);
-	});
 });

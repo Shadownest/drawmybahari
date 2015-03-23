@@ -1,4 +1,4 @@
-var io = require('socket.io').listen(1337);
+var io = require('socket.io').listen(5555);
 var Canvas = require('canvas');
 
 io.sockets.on('connection', function(socket)
