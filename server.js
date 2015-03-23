@@ -1,10 +1,11 @@
-var io = require('socket.io').listen(5555);
+var io = require('socket.io').listen(1337);
+var Canvas = require('canvas');
 
 io.sockets.on('connection', function(socket)
 {
 	socket.emit('connected');
 	socket.on('draw', function(draw)
 	{
-		io.emit('draw',{'c': socket.color,'d': draw});
+		io.emit('draw',{'d': draw});
 	});
 });
