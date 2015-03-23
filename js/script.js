@@ -34,6 +34,7 @@ var c = document.getElementById("mon_canvas");
 var ctx = c.getContext("2d");
 var dom = $("#mon_canvas");
 var isDrawing = false;
+ctx.strokeStyle = "black";
 var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
 'silver', 'teal', 'white', 'yellow'];
@@ -44,6 +45,21 @@ function debug(type, message)
   $("pre#debug").append("[" + type.toUpperCase()  + "] " + message+ "\n");
   $('pre#debug').animate( { scrollTop: $("pre#debug").offset().top }, 750 )
 }
+
+$('canvas').on('color', function(e, rgba)
+{
+  if(isFullGay)
+    {
+      ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length) + 1];  
+      ctx.fillStyle = colors[Math.floor(Math.random() * colors.length) + 1];  
+    }
+    else
+    {
+      ctx.strokeStyle = 'rgba('+rgba+')';
+      ctx.fillStyle = 'rgba('+rgba+')';
+    }
+  
+});
 
 dom.mousedown(function(event) {
     debug("info", "begin drawing");
@@ -57,14 +73,6 @@ dom.mousemove(function(event)
   if(isDrawing)
   {
     ctx.lineTo(event.pageX, event.pageY);
-    if(isFullGay)
-    {
-   		ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length) + 1];	
-    }
-    else
-    {
-    	ctx.strokeStyle = "black";
-    }
     ctx.stroke();
   }
 });
