@@ -3,7 +3,7 @@ function randomColor()
 	return {"r": Math.floor((Math.random() * 255) + 1),
 	"g": Math.floor((Math.random() * 255) + 1),
 	"b": Math.floor((Math.random() * 255) + 1),
-	"a": Math.floor((Math.random()))};
+	"a": Math.floor(Math.random())};
 }
 
 var id = 0;
