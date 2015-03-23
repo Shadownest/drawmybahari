@@ -46,7 +46,9 @@ la fonction qui recupere la position de la souris
 var c = document.getElementById("mon_canvas");
 var ctx = c.getContext("2d");
 var dom = $("#mon_canvas");
+var drawingtamp = [];
 var isDrawing = false;
+var delay = 3000;
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
 ctx.lineWidth = 10;
@@ -67,10 +69,20 @@ dom.mousedown(function(event) {
   	ctx.moveTo(event.pageX, event.pageY);  
 });
 
+setInterval(function(){
+  console.log(drawingtamp);
+}, delay);
+
 dom.mousemove(function(event)
 {
   if(isDrawing)
   {
+    drawingtamp.push({
+      x: event.pageX,
+      y: event.pageY,
+      color: 0
+    });
+
     ctx.lineTo(event.pageX, event.pageY);
     ctx.stroke();
   }
