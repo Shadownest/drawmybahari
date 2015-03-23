@@ -34,6 +34,10 @@ var c = document.getElementById("mon_canvas");
 var ctx = c.getContext("2d");
 var dom = $("#mon_canvas");
 var isDrawing = false;
+var colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
+'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+'silver', 'teal', 'white', 'yellow'];
+var isFullGay = false;
 
 function debug(type, message)
 {
@@ -53,7 +57,14 @@ dom.mousemove(function(event)
   if(isDrawing)
   {
     ctx.lineTo(event.pageX, event.pageY);
-    ctx.strokeStyle = "black";
+    if(isFullGay)
+    {
+   		ctx.strokeStyle = colors[Math.floor(Math.random() * colors.length) + 1];	
+    }
+    else
+    {
+    	ctx.strokeStyle = "black";
+    }
     ctx.stroke();
   }
 });
@@ -63,4 +74,19 @@ dom.mouseup(function(event)
   isDrawing = false; 
   debug("info","relache souris");
   ctx.closePath();
+});
+
+$("#fullgay").click(function() {
+	if(isFullGay)
+	{
+		debug("info", "Fullgay off");
+		isFullGay = false;
+		$(this).find("span").html("OFF");
+	}
+	else
+	{
+		debug("info", "Fullgay on");
+		isFullGay = true;
+		$(this).find("span").html("ON");
+	}
 });
