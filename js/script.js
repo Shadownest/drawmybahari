@@ -49,7 +49,6 @@ var c2 = document.getElementById("foreign");
 var ctx2 = c2.getContext("2d");
 var dom = $("#mon_canvas");
 var isDrawing = false;
-var delay = 600;
 var socket = io('10.32.195.210:5555');
 
 ctx.strokeStyle = "black";
@@ -115,9 +114,3 @@ dom.mouseup(function(event)
   isDrawing = false;
   ctx.closePath();
 });
-
-// function sendData(x1, y1, x2, y2, color, size)
-// {
-//     console.log(x1, y1, x2, y2, color, size);
-// }
-
