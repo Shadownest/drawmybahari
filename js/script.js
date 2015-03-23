@@ -50,21 +50,28 @@ var isDrawing = false;
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
 ctx.lineWidth = 10;
+var x1, x2, y1, y2, color, size;
+color = '0,0,0,1';
+
 
 $('canvas').on('color', function(e, rgba)
 {
     ctx.strokeStyle = 'rgba('+rgba+')';
     ctx.fillStyle = 'rgba('+rgba+')';
+    color = rgba;
 });
-$('canvas').on('size', function(e, size)
+$('canvas').on('size', function(e, newsize)
 {
-    ctx.lineWidth = size;
+    ctx.lineWidth = newsize;
+    size = newsize;
 });
 
 dom.mousedown(function(event) {
     isDrawing = true;
   	ctx.beginPath();
-  	ctx.moveTo(event.pageX, event.pageY);  
+  	ctx.moveTo(event.pageX, event.pageY);
+    x1 = event.pageX;
+    y1 = event.pageY;  
 });
 
 dom.mousemove(function(event)
@@ -72,7 +79,10 @@ dom.mousemove(function(event)
   if(isDrawing)
   {
     ctx.lineTo(event.pageX, event.pageY);
+    x2 = event.pageX;
+    y2 = event.pageY;
     ctx.stroke();
+    sendData(x1, x2, y1, y2, color, size);
   }
 });
 
@@ -81,3 +91,9 @@ dom.mouseup(function(event)
   isDrawing = false;
   ctx.closePath();
 });
+
+// function sendData(x1, y1, x2, y2, color, size)
+// {
+//     console.log(x1, y1, x2, y2, color, size);
+// }
+
