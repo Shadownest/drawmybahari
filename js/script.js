@@ -48,7 +48,9 @@ var ctx = c.getContext("2d");
 var dom = $("#mon_canvas");
 var drawingtamp = [];
 var isDrawing = false;
-var delay = 3000;
+var delay = 600;
+var socket = io('10.32.195.156:5555');
+
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
 ctx.lineWidth = 10;
@@ -63,6 +65,17 @@ $('canvas').on('size', function(e, size)
     ctx.lineWidth = size;
 });
 
+function sendData(x1, y1, color, size)
+{
+/**
+     * save data to server
+     */
+    drawingtamp.push({
+      x: x1,
+      y: y1
+    });
+}
+
 dom.mousedown(function(event) {
     isDrawing = true;
   	ctx.beginPath();
@@ -70,19 +83,19 @@ dom.mousedown(function(event) {
 });
 
 setInterval(function(){
-  console.log(drawingtamp);
+  /**
+   * Send json to socket
+   */
+  socket.emit('draw', drawingtamp, function() {
+    var drawingtamp = [];
+  });
+
 }, delay);
 
 dom.mousemove(function(event)
 {
   if(isDrawing)
   {
-    drawingtamp.push({
-      x: event.pageX,
-      y: event.pageY,
-      color: 0
-    });
-
     ctx.lineTo(event.pageX, event.pageY);
     ctx.stroke();
   }
