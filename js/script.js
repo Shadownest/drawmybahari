@@ -36,12 +36,15 @@ var ctx = c.getContext("2d");
 $("#mon_canvas").mousedown(function(event) {
   	ctx.beginPath();
   	ctx.moveTo(event.pageX, event.pageY);
-  	this.on("mousemove", function(event)
+  	$(this).on("mousemove", function(event)
   		{
   			ctx.lineTo(event.pageX, event.pageY);
-  		});
-  	this.mouseup(function()
-  		{
-  			ctx.closePath();
+        ctx.strokeStyle = "black";
+        ctx.stroke();
   		});
 });
+
+$("#mon_canvas").mouseup(function(event)
+  {   
+      ctx.closePath();
+  });
