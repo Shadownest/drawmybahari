@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Draw My Bahari</title>
-</head>
-<body>
-	<style>
-		canvas{background: rgb(220,220,220); border: 3px solid orange;}
-		.container{width: 60%; margin: 0 auto;}
-	</style>
-
-	<div class="container">
-
-	<h1>Terrain de jeu</h1>
-	<canvas id="mon_canvas" width="800" height="800"> </canvas>
-
-	</div><!-- CLOSE CONTAINER -->
-
-	<script type="text/javascript" src="js/script.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Draw My Bahari</title>
+		<link rel="stylesheet" type="text/css" href="src/style.css">
+		<link rel="stylesheet" type="text/css" href="src/spectrum.css">
+		<script src="src/jquery.js"></script>
+		<script src="src/canvas.js"></script>
+		<script src="src/spectrum.js"></script>
+		<script src="src/script.js"></script>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="menu">
+				<div class="scroll">
+					<div class="button" id="color"></div>
+					<div class="button" id="size"><div class="circle"></div></div>
+				</div>
+			</div>
+			<canvas id="mon_canvas" width="800" height="800">
+				Vous avez un navigateur trop vieux pour jouer avec nous, d&eacute;sol&eacute; :)
+			</canvas>
+		</div>
+	</body>
 </html>
